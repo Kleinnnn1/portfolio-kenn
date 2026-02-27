@@ -8,6 +8,14 @@ import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 
 function App() {
+  const scrollToContact = () => {
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToProjects = () => {
+    document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Navbar />
@@ -37,15 +45,21 @@ function App() {
             </h2>
 
             <p className="mt-6 text-gray-700 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Building intuitive and efficient apps with React, Laravel, and modern technologies. 
+              Building intuitive and efficient apps with React, Laravel, and modern technologies.
               Passionate about clean code, seamless UX, and delivering real business impact.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition">
+              <button
+                onClick={scrollToContact}
+                className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition cursor-pointer"
+              >
                 Hire Me
               </button>
-              <button className="px-6 py-3 border border-gray-900 text-gray-900 rounded-lg hover:bg-gray-100 transition">
+              <button
+                onClick={scrollToProjects}
+                className="px-6 py-3 border border-gray-900 text-gray-900 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+              >
                 View Projects
               </button>
             </div>
@@ -60,22 +74,13 @@ function App() {
 
       <CarouselSkills />
 
-      <h3 className="text-center text-3xl font-semibold text-gray-800 pt-4">
-        Projects
-      </h3>
-
       <ProjectSection />
-
-      <h3 className="text-center text-3xl font-semibold text-gray-800 pt-4">
-        Experience
-      </h3>
 
       <ExperienceSection />
 
       <ContactForm />
 
       <Footer />
-
     </>
   );
 }

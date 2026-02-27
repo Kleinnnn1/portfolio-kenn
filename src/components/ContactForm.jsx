@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactFormSection() {
     const [formData, setFormData] = useState({
@@ -7,6 +8,7 @@ export default function ContactFormSection() {
         subject: "",
         message: "",
     });
+    const [status, setStatus] = useState(null); // "sending" | "success" | "error"
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,19 +16,36 @@ export default function ContactFormSection() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        alert("Your message has been sent!");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setStatus("sending");
+
+        emailjs.send(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            {
+                name: formData.name,
+                email: formData.email,
+                title: formData.subject,
+                message: formData.message,
+            },
+            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        )
+            .then(() => {
+                setStatus("success");
+                setFormData({ name: "", email: "", subject: "", message: "" });
+            })
+            .catch(() => {
+                setStatus("error");
+            });
     };
 
     return (
-        <section className="bg-gray-50 py-16">
+        <section id="contact" className="bg-gray-200 py-16">
             <div className="max-w-5xl mx-auto px-6">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-gray-800 mb-4">Get in Touch</h2>
                     <p className="text-gray-600">
-                        Have a question or want to work together? Send me a message and I’ll get back to you as soon as possible.
+                        Have a question or want to work together? Send me a message and I'll get back to you as soon as possible.
                     </p>
                 </div>
 
@@ -104,12 +123,25 @@ export default function ContactFormSection() {
                             />
                         </div>
 
+                        {/* Status Messages */}
+                        {status === "success" && (
+                            <p className="text-green-600 text-sm font-medium">
+                                ✅ Your message has been sent successfully!
+                            </p>
+                        )}
+                        {status === "error" && (
+                            <p className="text-red-600 text-sm font-medium">
+                                ❌ Something went wrong. Please try again.
+                            </p>
+                        )}
+
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full bg-gray-800 text-white font-semibold py-3 rounded-lg"
+                            disabled={status === "sending"}
+                            className="w-full bg-gray-800 text-white font-semibold py-3 rounded-lg disabled:opacity-60"
                         >
-                            Send Message
+                            {status === "sending" ? "Sending..." : "Send Message"}
                         </button>
                     </form>
                 </div>
