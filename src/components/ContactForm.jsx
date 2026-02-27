@@ -66,7 +66,7 @@ export default function ContactFormSection() {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    placeholder="Your Name"
+                                    placeholder="John Doe"
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                                 />
                             </div>

@@ -20,7 +20,7 @@ function App() {
     <>
       <Navbar />
 
-      <div className="pt-20 pb-12 px-6">
+      <div id="home" className="pt-20 pb-12 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* LEFT SIDE - Image */}

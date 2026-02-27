@@ -12,7 +12,11 @@ export default function Navbar() {
     }, []);
 
     const scrollTo = (id) => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        if (id === "home") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        }
         setActive(id);
         setIsOpen(false);
     };
@@ -24,7 +28,7 @@ export default function Navbar() {
         }`;
 
     const mobileLinkClass = (id) =>
-        `cursor-pointer hover:text-blue-600 ${active === id ? "underline underline-offset-4 font-semibold text-blue-600" : ""
+        `cursor-pointer hover:text-gray-800 ${active === id ? "underline underline-offset-4 font-semibold text-gray-800" : ""
         }`;
 
     return (
@@ -46,10 +50,10 @@ export default function Navbar() {
 
             {/* Original Navbar (at top) */}
             <nav
-                className={`shadow-md transition-all duration-300 ${scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+                className={`shadow-md transition-all duration-300 ${scrolled && !isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
                     }`}
             >
-                <div className="flex justify-center items-center py-4 px-6">
+                <div className="flex justify-start md:justify-center items-center py-4 px-6">
 
                     {/* Desktop Menu */}
                     <ul className="hidden md:flex gap-10 text-lg">
