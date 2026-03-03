@@ -23,52 +23,62 @@ export default function ProjectSection() {
         {
             image: tinkerpro,
             title: "TinkerPro POS",
-            description: "Tinker Pro is a modern website for a startup offering a smart POS system that helps small businesses manage sales, track inventory, and monitor reports easily through a clean and user-friendly interface.",
+            description:
+                "A modern website for a startup offering a smart POS system that helps small businesses manage sales, track inventory, and monitor reports easily.",
             link: "https://tinkerpro.io/ph",
+            tag: "Web App",
         },
         {
             image: jrs,
             title: "Job Request System",
-            description: "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system, improving efficiency and response times.",
+            description:
+                "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system.",
             link: "http://ustpjrs.onrender.com/",
+            tag: "Platform",
         },
         {
             image: brightway,
             title: "Brightway",
-            description: "A business website for a startup insurance company designed to attract more clients. It showcases their services clearly and builds trust through a professional and user-friendly design.",
+            description:
+                "A business website for a startup insurance company designed to attract clients, showcasing services through a professional and user-friendly design.",
             link: "https://brightway.com.ph",
+            tag: "Business Site",
         },
         {
             image: happymeter,
             title: "HappyMeter",
-            description: "A web-based feedback and reporting tool designed to monitor and track employee satisfaction in the workplace, helping organizations gain insights and improve office morale and productivity.",
+            description:
+                "A web-based feedback and reporting tool to monitor employee satisfaction, helping organizations gain insights and improve office morale.",
             link: "https://happy-meter-rating-pabe.vercel.app/",
+            tag: "Dashboard",
         },
         {
             image: apxwifi,
             title: "APX WiFi Portal",
-            description: "A landing page and login flow for an internet service provider, designed for gym users to access voucher-based WiFi quickly and securely.",
+            description:
+                "A landing page and login flow for an internet service provider, designed for gym users to access voucher-based WiFi quickly and securely.",
             link: "",
+            tag: "Portal",
+            disabled: true,
         },
         {
             image: warehouseINVS,
             title: "Warehouse INVS",
-            description: "A fast, efficient, and intuitive warehouse inventory system built to streamline stock management. It allows precise tracking of tools, office supplies, and equipment, enhanced with built-in notifications, QR support, and real-time issuance monitoring.",
+            description:
+                "A warehouse inventory system built to streamline stock management with precise tracking, QR support, and real-time issuance monitoring.",
             link: "https://warehouse-invs.vercel.app/",
+            tag: "Inventory",
         },
     ];
 
     const handleToggle = () => {
         const nextShowAll = !showAll;
-
         if (nextShowAll) {
             setShowAll(true);
-            const newIndexes = [3, 4, 5];
-            setAnimatingIndexes(newIndexes);
+            setAnimatingIndexes([3, 4, 5]);
             setTimeout(() => setAnimatingIndexes([]), 600);
         } else {
-            const exitIndexes = [3, 4, 5];
-            setAnimatingIndexes(exitIndexes.map(i => `exit-${i}`));
+            setAnimatingIndexes([3, 4, 5].map((i) => `exit-${i}`));
             setTimeout(() => {
                 setShowAll(false);
                 setAnimatingIndexes([]);
@@ -103,69 +113,161 @@ export default function ProjectSection() {
     };
 
     return (
-        <div id="projects" className="text-gray-800 p-8 rounded-lg max-w-6xl mx-auto">
-
-            <h3 className="text-center text-3xl font-semibold text-gray-800 pb-10">
-                Projects
-            </h3>
-
+        <section
+            id="projects"
+            className="py-16 px-6"
+            style={{
+                borderTop: "1px solid rgba(100,120,160,0.12)",
+                borderBottom: "1px solid rgba(100,120,160,0.12)",
+            }}
+        >
             <style>{`
-                @keyframes fadeSlideIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px) scale(0.95);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0) scale(1);
-                    }
-                }
-                @keyframes fadeSlideOut {
-                    from {
-                        opacity: 1;
-                        transform: translateY(0) scale(1);
-                    }
-                    to {
-                        opacity: 0;
-                        transform: translateY(30px) scale(0.95);
-                    }
-                }
-            `}</style>
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(30px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0)   scale(1);    }
+        }
+        @keyframes fadeSlideOut {
+          from { opacity: 1; transform: translateY(0)   scale(1);    }
+          to   { opacity: 0; transform: translateY(30px) scale(0.97); }
+        }
+        .project-card:hover .project-arrow { opacity: 1; transform: translateX(0); }
+        .project-card:hover .project-img   { transform: scale(1.05); }
+        .project-card:hover {
+          border-color: rgba(100,120,160,0.45) !important;
+          box-shadow: 0 0 0 1px rgba(100,120,160,0.2), 0 20px 40px rgba(0,0,0,0.5) !important;
+        }
+      `}</style>
 
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                {displayedProjects.map((project, index) => (
-                    <a
-                        key={index}
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={getCardStyle(index)}
-                        className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1 ${project.disabled ? "pointer-events-none opacity-70" : ""
-                            }`}
-                    >
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-48 object-cover"
-                        />
-                        <div className="p-4">
-                            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                            <p className="text-gray-700 text-sm">{project.description}</p>
-                        </div>
-                    </a>
-                ))}
-            </div>
-
-            {projects.length > 3 && (
-                <div className="flex justify-center mt-6">
-                    <button
-                        onClick={handleToggle}
-                        className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition"
-                    >
-                        {showAll ? "Show Less" : "Show All Projects"}
-                    </button>
+            <div className="max-w-6xl mx-auto">
+                {/* Section header */}
+                <div className="flex items-center gap-4 mb-10">
+                    <div
+                        className="h-px flex-1"
+                        style={{ background: "linear-gradient(90deg, transparent, rgba(100,120,160,0.3))" }}
+                    />
+                    <h2 className="text-white text-2xl font-semibold tracking-widest uppercase">
+                        Projects
+                    </h2>
+                    <div
+                        className="h-px flex-1"
+                        style={{ background: "linear-gradient(90deg, rgba(100,120,160,0.3), transparent)" }}
+                    />
                 </div>
-            )}
-        </div>
+
+                {/* Grid */}
+                <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                    {displayedProjects.map((project, index) => (
+                        <a
+                            key={index}
+                            href={project.disabled ? undefined : project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                ...getCardStyle(index),
+                                background: "rgba(10,10,10,0.65)",
+                                backdropFilter: "blur(10px)",
+                                WebkitBackdropFilter: "blur(10px)",
+                                border: "1px solid rgba(100,120,160,0.2)",
+                                borderRadius: "6px",
+                                overflow: "hidden",
+                                transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+                                pointerEvents: project.disabled ? "none" : "auto",
+                                opacity: project.disabled
+                                    ? (getCardStyle(index).opacity ?? 0.5)
+                                    : (getCardStyle(index).opacity ?? 1),
+                                textDecoration: "none",
+                            }}
+                            className="project-card block"
+                        >
+                            {/* Image */}
+                            <div className="relative overflow-hidden" style={{ height: "180px" }}>
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="project-img w-full h-full object-cover"
+                                    style={{ transition: "transform 0.5s ease" }}
+                                />
+                                {/* Dark gradient fade into card body */}
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        background:
+                                            "linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.85) 100%)",
+                                    }}
+                                />
+                                {/* Tag badge */}
+                                <span
+                                    className="absolute top-3 left-3 text-xs tracking-widest uppercase px-2 py-1 font-medium"
+                                    style={{
+                                        background: "rgba(10,10,10,0.75)",
+                                        border: "1px solid rgba(100,120,160,0.3)",
+                                        borderRadius: "3px",
+                                        color: "rgba(160,180,220,0.9)",
+                                        backdropFilter: "blur(4px)",
+                                    }}
+                                >
+                                    {project.tag}
+                                </span>
+                            </div>
+
+                            {/* Body */}
+                            <div className="p-5">
+                                <div className="flex items-start justify-between gap-2 mb-2">
+                                    <h3 className="text-white font-semibold text-lg leading-snug">
+                                        {project.title}
+                                    </h3>
+                                    {/* Arrow icon — appears on hover */}
+                                    <span
+                                        className="project-arrow text-gray-400 mt-1 shrink-0"
+                                        style={{
+                                            opacity: 0,
+                                            transform: "translateX(-6px)",
+                                            transition: "opacity 0.3s ease, transform 0.3s ease",
+                                            fontSize: "18px",
+                                        }}
+                                    >
+                                        ↗
+                                    </span>
+                                </div>
+                                <p className="text-gray-500 text-sm leading-relaxed">
+                                    {project.description}
+                                </p>
+                                {project.disabled && (
+                                    <span className="inline-block mt-3 text-xs tracking-widest uppercase text-gray-600">
+                                        Private Project
+                                    </span>
+                                )}
+                            </div>
+                        </a>
+                    ))}
+                </div>
+
+                {/* Toggle button */}
+                {projects.length > 3 && (
+                    <div className="flex justify-center mt-10">
+                        <button
+                            onClick={handleToggle}
+                            className="px-8 py-3 text-sm tracking-widest uppercase font-medium text-white transition-all duration-200"
+                            style={{
+                                border: "1px solid rgba(255,255,255,0.2)",
+                                borderRadius: "4px",
+                                background: "rgba(255,255,255,0.04)",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                                e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                                e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+                            }}
+                        >
+                            {showAll ? "Show Less" : "View All Projects"}
+                        </button>
+                    </div>
+                )}
+            </div>
+        </section>
     );
 }

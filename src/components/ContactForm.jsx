@@ -1,148 +1,229 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
-export default function ContactFormSection() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-    });
-    const [status, setStatus] = useState(null); // "sending" | "success" | "error"
+const inputStyle = {
+    width: "100%",
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(100,120,160,0.25)",
+    borderRadius: "4px",
+    padding: "10px 14px",
+    color: "#e5e7eb",
+    fontSize: "14px",
+    outline: "none",
+    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+};
 
-    const handleChange = (e) => {
+const labelStyle = {
+    display: "block",
+    fontSize: "11px",
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    color: "rgba(160,180,220,0.7)",
+    marginBottom: "6px",
+    fontWeight: 500,
+};
+
+function Field({ label, children }) {
+    return (
+        <div>
+            <label style={labelStyle}>{label}</label>
+            {children}
+        </div>
+    );
+}
+
+export default function ContactFormSection() {
+    const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+    const [status, setStatus] = useState(null); // "sending" | "success" | "error"
+    const [focused, setFocused] = useState(null);
+
+    const handleChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setStatus("sending");
 
-        emailjs.send(
-            import.meta.env.VITE_EMAILJS_SERVICE_ID,
-            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-            {
-                name: formData.name,
-                email: formData.email,
-                title: formData.subject,
-                message: formData.message,
-            },
-            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-        )
+        emailjs
+            .send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                { name: formData.name, email: formData.email, title: formData.subject, message: formData.message },
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            )
             .then(() => {
                 setStatus("success");
                 setFormData({ name: "", email: "", subject: "", message: "" });
             })
-            .catch(() => {
-                setStatus("error");
-            });
+            .catch(() => setStatus("error"));
     };
 
+    const focusStyle = (field) =>
+        focused === field
+            ? { ...inputStyle, borderColor: "rgba(100,120,160,0.7)", boxShadow: "0 0 0 3px rgba(90,122,224,0.1)" }
+            : inputStyle;
+
     return (
-        <section id="contact" className="bg-gray-200 py-16">
-            <div className="max-w-5xl mx-auto px-6">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">Get in Touch</h2>
-                    <p className="text-gray-600">
-                        Have a question or want to work together? Send me a message and I'll get back to you as soon as possible.
-                    </p>
+        <section
+            id="contact"
+            className="py-16 px-6"
+            style={{
+                borderTop: "1px solid rgba(100,120,160,0.12)",
+                borderBottom: "1px solid rgba(100,120,160,0.12)",
+            }}
+        >
+            <div className="max-w-3xl mx-auto">
+
+                {/* Section header */}
+                <div className="flex items-center gap-4 mb-12">
+                    <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(100,120,160,0.3))" }} />
+                    <h2 className="text-white text-2xl font-semibold tracking-widest uppercase">Get in Touch</h2>
+                    <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(100,120,160,0.3), transparent)" }} />
                 </div>
 
-                {/* Form */}
-                <div className="bg-white p-8 rounded-lg shadow-md">
-                    <form onSubmit={handleSubmit} className="grid gap-6">
-                        {/* Name + Email Row */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Name */}
-                            <div>
-                                <label htmlFor="name" className="block text-gray-700 mb-1">
-                                    Your Name
-                                </label>
+                <p className="text-center text-gray-500 text-sm mb-10 leading-relaxed">
+                    Have a question or want to work together? Send me a message and I'll get back to you as soon as possible.
+                </p>
+
+                {/* Form card */}
+                <div
+                    style={{
+                        background: "rgba(10,10,10,0.65)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        border: "1px solid rgba(100,120,160,0.2)",
+                        borderRadius: "6px",
+                        padding: "36px",
+                    }}
+                >
+                    <form onSubmit={handleSubmit}>
+                        <div style={{ display: "grid", gap: "20px" }}>
+
+                            {/* Name + Email row */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <Field label="Your Name">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        onFocus={() => setFocused("name")}
+                                        onBlur={() => setFocused(null)}
+                                        required
+                                        placeholder="John Doe"
+                                        style={focusStyle("name")}
+                                    />
+                                </Field>
+                                <Field label="Email Address">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        onFocus={() => setFocused("email")}
+                                        onBlur={() => setFocused(null)}
+                                        required
+                                        placeholder="you@example.com"
+                                        style={focusStyle("email")}
+                                    />
+                                </Field>
+                            </div>
+
+                            {/* Subject */}
+                            <Field label="Subject">
                                 <input
                                     type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
+                                    name="subject"
+                                    value={formData.subject}
                                     onChange={handleChange}
+                                    onFocus={() => setFocused("subject")}
+                                    onBlur={() => setFocused(null)}
                                     required
-                                    placeholder="John Doe"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    placeholder="Subject of your message"
+                                    style={focusStyle("subject")}
                                 />
-                            </div>
+                            </Field>
 
-                            {/* Email */}
-                            <div>
-                                <label htmlFor="email" className="block text-gray-700 mb-1">
-                                    Email Address
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
+                            {/* Message */}
+                            <Field label="Message">
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
                                     onChange={handleChange}
+                                    onFocus={() => setFocused("message")}
+                                    onBlur={() => setFocused(null)}
                                     required
-                                    placeholder="you@example.com"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    rows={5}
+                                    placeholder="Write your message here..."
+                                    style={{ ...focusStyle("message"), resize: "vertical" }}
                                 />
-                            </div>
+                            </Field>
+
+                            {/* Status messages */}
+                            {status === "success" && (
+                                <div
+                                    style={{
+                                        background: "rgba(90,224,122,0.08)",
+                                        border: "1px solid rgba(90,224,122,0.25)",
+                                        borderRadius: "4px",
+                                        padding: "10px 14px",
+                                        color: "#5ae07a",
+                                        fontSize: "13px",
+                                        letterSpacing: "0.05em",
+                                    }}
+                                >
+                                    ✓ &nbsp;Your message has been sent successfully!
+                                </div>
+                            )}
+                            {status === "error" && (
+                                <div
+                                    style={{
+                                        background: "rgba(224,90,122,0.08)",
+                                        border: "1px solid rgba(224,90,122,0.25)",
+                                        borderRadius: "4px",
+                                        padding: "10px 14px",
+                                        color: "#e05a7a",
+                                        fontSize: "13px",
+                                        letterSpacing: "0.05em",
+                                    }}
+                                >
+                                    ✕ &nbsp;Something went wrong. Please try again.
+                                </div>
+                            )}
+
+                            {/* Submit button */}
+                            <button
+                                type="submit"
+                                disabled={status === "sending"}
+                                style={{
+                                    width: "100%",
+                                    padding: "12px",
+                                    border: "1px solid rgba(255,255,255,0.2)",
+                                    borderRadius: "4px",
+                                    background: status === "sending" ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.06)",
+                                    color: status === "sending" ? "rgba(255,255,255,0.35)" : "#ffffff",
+                                    fontSize: "12px",
+                                    letterSpacing: "0.15em",
+                                    textTransform: "uppercase",
+                                    fontWeight: 600,
+                                    cursor: status === "sending" ? "not-allowed" : "pointer",
+                                    transition: "background 0.2s ease, border-color 0.2s ease",
+                                }}
+                                onMouseEnter={(e) => {
+                                    if (status !== "sending") {
+                                        e.currentTarget.style.background = "rgba(255,255,255,0.12)";
+                                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+                                }}
+                            >
+                                {status === "sending" ? "Sending..." : "Send Message"}
+                            </button>
+
                         </div>
-
-                        {/* Subject */}
-                        <div>
-                            <label htmlFor="subject" className="block text-gray-700 mb-1">
-                                Subject
-                            </label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                value={formData.subject}
-                                onChange={handleChange}
-                                required
-                                placeholder="Subject of your message"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                            />
-                        </div>
-
-                        {/* Message */}
-                        <div>
-                            <label htmlFor="message" className="block text-gray-700 mb-1">
-                                Message
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                rows="5"
-                                placeholder="Write your message here..."
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                            />
-                        </div>
-
-                        {/* Status Messages */}
-                        {status === "success" && (
-                            <p className="text-green-600 text-sm font-medium">
-                                ✅ Your message has been sent successfully!
-                            </p>
-                        )}
-                        {status === "error" && (
-                            <p className="text-red-600 text-sm font-medium">
-                                ❌ Something went wrong. Please try again.
-                            </p>
-                        )}
-
-                        {/* Submit Button */}
-                        <button
-                            type="submit"
-                            disabled={status === "sending"}
-                            className="w-full bg-gray-800 text-white font-semibold py-3 rounded-lg disabled:opacity-60"
-                        >
-                            {status === "sending" ? "Sending..." : "Send Message"}
-                        </button>
                     </form>
                 </div>
             </div>
