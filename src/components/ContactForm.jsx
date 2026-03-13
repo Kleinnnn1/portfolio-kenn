@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const inputStyle = {
     width: "100%",
@@ -33,29 +34,58 @@ function Field({ label, children }) {
 }
 
 export default function ContactFormSection() {
-    const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
-    const [status, setStatus] = useState(null); // "sending" | "success" | "error"
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        honeypot: "",
+    });
+    const [status, setStatus] = useState(null);
     const [focused, setFocused] = useState(null);
+    const [turnstileToken, setTurnstileToken] = useState(null); // 🔒 Turnstile token
+    const turnstileRef = useRef(null);
 
     const handleChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // 🍯 Honeypot check
+        if (formData.honeypot) return;
+
+        // 🔒 Turnstile check
+        if (!turnstileToken) {
+            setStatus("captcha");
+            return;
+        }
+
         setStatus("sending");
 
         emailjs
             .send(
                 import.meta.env.VITE_EMAILJS_SERVICE_ID,
                 import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-                { name: formData.name, email: formData.email, title: formData.subject, message: formData.message },
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    title: formData.subject,
+                    message: formData.message,
+                },
                 import.meta.env.VITE_EMAILJS_PUBLIC_KEY
             )
             .then(() => {
                 setStatus("success");
-                setFormData({ name: "", email: "", subject: "", message: "" });
+                setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" });
+                setTurnstileToken(null);
+                turnstileRef.current?.reset();
             })
-            .catch(() => setStatus("error"));
+            .catch(() => {
+                setStatus("error");
+                turnstileRef.current?.reset();
+                setTurnstileToken(null);
+            });
     };
 
     const focusStyle = (field) =>
@@ -159,34 +189,64 @@ export default function ContactFormSection() {
                                 />
                             </Field>
 
+                            {/* 🍯 Honeypot */}
+                            <input
+                                type="text"
+                                name="honeypot"
+                                value={formData.honeypot}
+                                onChange={handleChange}
+                                style={{ display: "none" }}
+                                tabIndex={-1}
+                                autoComplete="off"
+                            />
+
+                            {/* 🔒 Cloudflare Turnstile */}
+                            <Turnstile
+                                ref={turnstileRef}
+                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                onSuccess={(token) => setTurnstileToken(token)}
+                                onExpire={() => setTurnstileToken(null)}
+                                onError={() => setTurnstileToken(null)}
+                                options={{ theme: "dark" }}
+                            />
+
                             {/* Status messages */}
+                            {status === "captcha" && (
+                                <div style={{
+                                    background: "rgba(224,180,90,0.08)",
+                                    border: "1px solid rgba(224,180,90,0.25)",
+                                    borderRadius: "4px",
+                                    padding: "10px 14px",
+                                    color: "#e0b45a",
+                                    fontSize: "13px",
+                                    letterSpacing: "0.05em",
+                                }}>
+                                    ⚠ &nbsp;Please complete the CAPTCHA first.
+                                </div>
+                            )}
                             {status === "success" && (
-                                <div
-                                    style={{
-                                        background: "rgba(90,224,122,0.08)",
-                                        border: "1px solid rgba(90,224,122,0.25)",
-                                        borderRadius: "4px",
-                                        padding: "10px 14px",
-                                        color: "#5ae07a",
-                                        fontSize: "13px",
-                                        letterSpacing: "0.05em",
-                                    }}
-                                >
+                                <div style={{
+                                    background: "rgba(90,224,122,0.08)",
+                                    border: "1px solid rgba(90,224,122,0.25)",
+                                    borderRadius: "4px",
+                                    padding: "10px 14px",
+                                    color: "#5ae07a",
+                                    fontSize: "13px",
+                                    letterSpacing: "0.05em",
+                                }}>
                                     ✓ &nbsp;Your message has been sent successfully!
                                 </div>
                             )}
                             {status === "error" && (
-                                <div
-                                    style={{
-                                        background: "rgba(224,90,122,0.08)",
-                                        border: "1px solid rgba(224,90,122,0.25)",
-                                        borderRadius: "4px",
-                                        padding: "10px 14px",
-                                        color: "#e05a7a",
-                                        fontSize: "13px",
-                                        letterSpacing: "0.05em",
-                                    }}
-                                >
+                                <div style={{
+                                    background: "rgba(224,90,122,0.08)",
+                                    border: "1px solid rgba(224,90,122,0.25)",
+                                    borderRadius: "4px",
+                                    padding: "10px 14px",
+                                    color: "#e05a7a",
+                                    fontSize: "13px",
+                                    letterSpacing: "0.05em",
+                                }}>
                                     ✕ &nbsp;Something went wrong. Please try again.
                                 </div>
                             )}
