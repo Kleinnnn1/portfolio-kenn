@@ -201,14 +201,16 @@ export default function ContactFormSection() {
                             />
 
                             {/* 🔒 Cloudflare Turnstile */}
-                            <Turnstile
-                                ref={turnstileRef}
-                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
-                                onSuccess={(token) => setTurnstileToken(token)}
-                                onExpire={() => setTurnstileToken(null)}
-                                onError={() => setTurnstileToken(null)}
-                                options={{ theme: "dark" }}
-                            />
+                            <div style={{ display: "flex", justifyContent: "center" }}>
+                                <Turnstile
+                                    ref={turnstileRef}
+                                    siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                                    onSuccess={(token) => setTurnstileToken(token)}
+                                    onExpire={() => setTurnstileToken(null)}
+                                    onError={() => setTurnstileToken(null)}
+                                    options={{ theme: "dark" }}
+                                />
+                            </div>
 
                             {/* Status messages */}
                             {status === "captcha" && (
