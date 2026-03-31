@@ -20,7 +20,7 @@ export default function ExperienceSection() {
             logoBg: "#f97316",
             role: "Full Stack Web Developer",
             company: "TinkerPro Technologies",
-            period: "June 2025 – February 2026",
+            period: "August 2025 – January 2026",
             location: "Lapu-Lapu City, Philippines",
             tag: "Full-Time",
             description: [

@@ -1,6 +1,9 @@
 import {
     FaPhp,
     FaReact,
+    FaAws,
+    FaDigitalOcean,
+    FaWordpress,
 } from "react-icons/fa";
 import {
     SiDjango,
@@ -13,6 +16,9 @@ import {
     SiJavascript,
     SiNextdotjs,
     SiTypescript,
+    SiRender,
+    SiN8N,
+    SiVercel,
 } from "react-icons/si";
 
 const skills = [
@@ -30,6 +36,13 @@ const skills = [
     { icon: <SiSupabase className="text-emerald-400" />, name: "Supabase" },
     { icon: <SiMysql className="text-blue-300" />, name: "MySQL" },
     { icon: <SiPostgresql className="text-indigo-400" />, name: "PostgreSQL" },
+    // Row 3
+    { icon: <FaAws className="text-orange-400" />, name: "AWS" },
+    { icon: <SiRender className="text-violet-400" />, name: "Render" },
+    { icon: <FaDigitalOcean className="text-blue-400" />, name: "DigitalOcean" },
+    { icon: <SiN8N className="text-rose-400" />, name: "n8n" },
+    { icon: <SiVercel className="text-white" />, name: "Vercel" },
+    { icon: <FaWordpress className="text-sky-400" />, name: "WordPress" },
 ];
 
 export default function SkillSection() {
@@ -40,7 +53,7 @@ export default function SkillSection() {
             style={{
                 borderTop: "1px solid rgba(100,120,160,0.12)",
                 borderBottom: "1px solid rgba(100,120,160,0.12)",
-                scrollMarginTop: "80px", // ← offsets the fixed floating navbar
+                scrollMarginTop: "80px",
             }}
         >
             {/* Section header */}
