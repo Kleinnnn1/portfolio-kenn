@@ -5,6 +5,7 @@ import brightway from "../assets/projectsimg/brightway.png";
 import happymeter from "../assets/projectsimg/happymeter.png";
 import warehouseINVS from "../assets/projectsimg/warehouseINVS.png";
 import apxwifi from "../assets/projectsimg/apxwifi.png";
+import nike from "../assets/projectsimg/nike.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -68,6 +69,14 @@ export default function ProjectSection() {
                 "A warehouse inventory system built to streamline stock management with precise tracking, QR support, and real-time issuance monitoring.",
             link: "https://warehouse-invs.vercel.app/",
             tag: "Inventory",
+        },
+        {
+            image: nike,
+            title: "Nike Shoe Slider",
+            description:
+                "An interactive shoe showcase with cinematic slide transitions, layered animations, and a shoe-through-text effect built with React and CSS.",
+            link: "https://nike-web-teal.vercel.app/",
+            tag: "UI/Animation"
         },
     ];
 
