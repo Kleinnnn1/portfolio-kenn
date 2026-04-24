@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import KennImage from "./assets/kenn-img.jpg";
 import ProjectSection from "./components/Projects";
@@ -16,6 +16,16 @@ function App() {
   const scrollToProjects = () => {
     document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "a") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <>
