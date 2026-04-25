@@ -17,16 +17,6 @@ function App() {
     document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "a") {
-        e.preventDefault();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
     <>
       {/* ── Fixed pixel background (sits behind everything) ── */}
