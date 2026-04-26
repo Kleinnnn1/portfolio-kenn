@@ -1,16 +1,102 @@
-# React + Vite
+# Kenneth Jhun N. Balino - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website showcasing projects, experience, and skills for Full Stack Developer Kenneth Jhun N. Balino.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Fully responsive layout that works on mobile, tablet, and desktop devices
+- **Hero Section**: Professional profile introduction with profile image and call-to-action buttons
+- **Projects Showcase**: Display of completed projects with details and links
+- **Experience Timeline**: Professional work experience and background
+- **Skills Section**: Technical skills and technologies
+- **Contact Form**: Integrated contact form with email functionality and CAPTCHA verification
+- **Custom UI**: Pixel grid background effect for visual interest
+- **Dark Theme**: Modern dark mode design with smooth scrolling navigation
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend Framework**: React 19.2.0
+- **Build Tool**: Vite 7.3.1
+- **Styling**: Tailwind CSS 4.2.1
+- **UI Components**: Lucide React, React Icons
+- **Form Services**: EmailJS for email delivery
+- **Security**: Cloudflare Turnstile for CAPTCHA
+- **Linting**: ESLint
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd portfolio-kenn
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+## Development
+
+To run the development server:
+
+```bash
+npm run dev
+```
+
+The app will be available at `http://localhost:5173` with hot module reload (HMR) enabled.
+
+## Build
+
+To build for production:
+
+```bash
+npm run build
+```
+
+The optimized build output will be in the `dist/` directory.
+
+## Preview
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Linting
+
+To run ESLint:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Navbar.jsx
+│   ├── Projects.jsx
+│   ├── Experience.jsx
+│   ├── Skills.jsx
+│   ├── ContactForm.jsx
+│   └── Footer.jsx
+├── ui/
+│   └── background.jsx (Pixel grid component)
+├── assets/
+│   └── projectsimg/
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+## Author
+
+**Kenneth Jhun N. Balino**  
+Full Stack Developer
+
+---
+
+Built with React, Vite, and Tailwind CSS
