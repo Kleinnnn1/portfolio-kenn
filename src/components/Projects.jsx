@@ -6,6 +6,7 @@ import happymeter from "../assets/projectsimg/happymeter.png";
 import warehouseINVS from "../assets/projectsimg/warehouseINVS.png";
 import apxwifi from "../assets/projectsimg/apxwifi.png";
 import nike from "../assets/projectsimg/nike.png";
+import notely from "../assets/projectsimg/notely.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -52,6 +53,14 @@ export default function ProjectSection() {
                 "A business website for a startup insurance company designed to attract clients, showcasing services through a professional and user-friendly design.",
             link: "https://brightway.com.ph",
             tag: "Business Site",
+        },
+        {
+            image: notely,
+            title: "Notely",
+            description:
+                "A note-taking app that works seamlessly online and offline — sync your notes across devices or keep them local when there's no connection.",
+            link: "https://notely-wine-two.vercel.app/notes",
+            tag: "Productivity",
         },
         {
             image: happymeter,
