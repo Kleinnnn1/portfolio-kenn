@@ -7,6 +7,7 @@ import warehouseINVS from "../assets/projectsimg/warehouseINVS.png";
 import apxwifi from "../assets/projectsimg/apxwifi.png";
 import nike from "../assets/projectsimg/nike.png";
 import notely from "../assets/projectsimg/notely.png";
+import urlshortener from "../assets/projectsimg/urlshortener.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -45,6 +46,14 @@ export default function ProjectSection() {
                 "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system.",
             link: "http://ustpjrs.onrender.com/",
             tag: "Platform",
+        },
+        {
+            image: urlshortener,
+            title: "URL Shortener",
+            description:
+                "A full stack URL shortener that converts long links into clean, shareable short URLs with real-time click tracking and persistent storage.",
+            link: "https://url-shortener-vert-pi.vercel.app/",
+            tag: "Full Stack",
         },
         {
             image: brightway,
@@ -157,7 +166,7 @@ export default function ProjectSection() {
       `}</style>
 
             <div className="max-w-6xl mx-auto">
-                {/* Section header */}
+
                 <div className="flex items-center gap-4 mb-10">
                     <div
                         className="h-px flex-1"
@@ -197,7 +206,7 @@ export default function ProjectSection() {
                             }}
                             className="project-card block"
                         >
-                            {/* Image */}
+
                             <div className="relative overflow-hidden" style={{ height: "180px" }}>
                                 <img
                                     src={project.image}
@@ -205,7 +214,7 @@ export default function ProjectSection() {
                                     className="project-img w-full h-full object-cover"
                                     style={{ transition: "transform 0.5s ease" }}
                                 />
-                                {/* Dark gradient fade into card body */}
+
                                 <div
                                     style={{
                                         position: "absolute",
@@ -214,7 +223,7 @@ export default function ProjectSection() {
                                             "linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.85) 100%)",
                                     }}
                                 />
-                                {/* Tag badge */}
+
                                 <span
                                     className="absolute top-3 left-3 text-xs tracking-widest uppercase px-2 py-1 font-medium"
                                     style={{
@@ -229,7 +238,6 @@ export default function ProjectSection() {
                                 </span>
                             </div>
 
-                            {/* Body */}
                             <div className="p-5">
                                 <div className="flex items-start justify-between gap-2 mb-2">
                                     <h3 className="text-white font-semibold text-lg leading-snug">
@@ -261,7 +269,6 @@ export default function ProjectSection() {
                     ))}
                 </div>
 
-                {/* Toggle button */}
                 {projects.length > 3 && (
                     <div className="flex justify-center mt-10">
                         <button
