@@ -8,6 +8,7 @@ import apxwifi from "../assets/projectsimg/apxwifi.png";
 import nike from "../assets/projectsimg/nike.png";
 import notely from "../assets/projectsimg/notely.png";
 import urlshortener from "../assets/projectsimg/urlshortener.png";
+import linkguard from "../assets/projectsimg/linkguard.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -54,6 +55,14 @@ export default function ProjectSection() {
                 "A full stack URL shortener that converts long links into clean, shareable short URLs with real-time click tracking and persistent storage.",
             link: "https://url-shortener-vert-pi.vercel.app/",
             tag: "Full Stack",
+        },
+        {
+            image: linkguard,
+            title: "LinkGuard",
+            description:
+                "A link safety checker that scans URLs for potential threats, phishing attempts, and malicious content before you click.",
+            link: "https://link-guard-psi.vercel.app/",
+            tag: "Security",
         },
         {
             image: brightway,
