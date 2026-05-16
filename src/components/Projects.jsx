@@ -9,6 +9,7 @@ import nike from "../assets/projectsimg/nike.png";
 import notely from "../assets/projectsimg/notely.png";
 import urlshortener from "../assets/projectsimg/urlshortener.png";
 import linkguard from "../assets/projectsimg/linkguard.png";
+import songtify from "../assets/projectsimg/songtify.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -85,8 +86,16 @@ export default function ProjectSection() {
             title: "HappyMeter",
             description:
                 "A web-based feedback and reporting tool to monitor employee satisfaction, helping organizations gain insights and improve office morale.",
-            link: "https://happy-meter-rating-pabe.vercel.app/",
+            link: "https://happy-meter-rating.vercel.app/",
             tag: "Dashboard",
+        },
+        {
+            image: songtify,
+            title: "Songtify",
+            description:
+                "A Spotify playlist sorter that categorizes songs by vibe using audio features, helping users organize playlists based on mood and listening experience.",
+            link: "https://songtify-v1.vercel.app/",
+            tag: "Music Tech",
         },
         {
             image: apxwifi,
