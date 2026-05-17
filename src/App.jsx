@@ -19,28 +19,25 @@ function App() {
 
   return (
     <>
-      {/* ── Fixed pixel background (sits behind everything) ── */}
+
       <PixelGrid />
 
-      {/* ── All page content (sits on top of the background) ── */}
       <div style={{ position: "relative", zIndex: 1 }}>
         <Navbar />
 
         <div id="home" className="pt-20 pb-12 px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            {/* LEFT SIDE - Image */}
             <div className="flex justify-center lg:justify-start">
               <div className="w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 border border-white rounded-full overflow-hidden shadow-xl">
                 <img
                   src={KennImage}
-                  alt="Kenn Balino"
+                  alt="Kenneth Jhun Balino"
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
-            {/* RIGHT SIDE - Content */}
             <div className="text-center lg:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                 Kenneth Jhun N. Balino
