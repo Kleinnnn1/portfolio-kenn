@@ -4,9 +4,9 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [active, setActive] = useState("home");
     const [scrolled, setScrolled] = useState(false);
-    const isClickScrolling = useRef(false); // prevents observer overriding click nav
+    const isClickScrolling = useRef(false);
 
-    const NAV_ITEMS = ["home", "skills", "projects", "experience", "contact"];
+    const NAV_ITEMS = ["home", "skills", "projects", "experience", "certificates", "contact"];
 
     // Track scroll for floating pill visibility
     useEffect(() => {
@@ -15,7 +15,6 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // ✅ IntersectionObserver — auto-highlights active section while scrolling
     useEffect(() => {
         const observers = [];
 
@@ -71,7 +70,6 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Floating Pill Navbar */}
             <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
                 }`}>
                 <ul className="hidden md:flex items-center gap-1 rounded-full px-6 py-2 border border-white/10"
@@ -87,7 +85,6 @@ export default function Navbar() {
                 </ul>
             </div>
 
-            {/* Top Navbar */}
             <nav className={`transition-all duration-300 ${scrolled && !isOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
                 style={{
                     borderBottom: "1px solid rgba(100,120,160,0.15)",
@@ -105,14 +102,12 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Mobile Overlay */}
             {isOpen && (
                 <div className="fixed inset-0 z-40"
                     style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }}
                     onClick={() => setIsOpen(false)} />
             )}
 
-            {/* Mobile Drawer */}
             <div className={`fixed top-0 left-0 h-full w-64 z-50 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
                 style={{
                     background: "rgba(10,10,10,0.92)",

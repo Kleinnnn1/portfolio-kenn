@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
 import KennImage from "./assets/kenn-img.jpg";
 import ProjectSection from "./components/Projects";
@@ -7,6 +7,7 @@ import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import PixelGrid from "./ui/background";
 import SkillSection from "./components/Skills";
+import CertificateSection from "./components/Certificates";
 
 function App() {
   const scrollToContact = () => {
@@ -19,7 +20,6 @@ function App() {
 
   return (
     <>
-
       <PixelGrid />
 
       <div style={{ position: "relative", zIndex: 1 }}>
@@ -76,6 +76,8 @@ function App() {
         <ProjectSection />
 
         <ExperienceSection />
+
+        <CertificateSection />
 
         <ContactForm />
 
