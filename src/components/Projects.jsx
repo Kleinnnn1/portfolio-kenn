@@ -11,6 +11,7 @@ import urlshortener from "../assets/projectsimg/urlshortener.png";
 import linkguard from "../assets/projectsimg/linkguard.png";
 import songtify from "../assets/projectsimg/songtify.png";
 import nandasystem from "../assets/projectsimg/nandasystem.png";
+import kui from "../assets/projectsimg/kui.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -41,6 +42,14 @@ export default function ProjectSection() {
                 "An interactive shoe showcase with cinematic slide transitions, layered animations, and a shoe-through-text effect built with React and CSS.",
             link: "https://nike-web-teal.vercel.app/",
             tag: "UI/Animation"
+        },
+        {
+            image: kui,
+            title: "KUI",
+            description:
+                "A minimal dark component library built with React, TypeScript, and Tailwind. Designed for clean, copy-paste-ready UI components.",
+            link: "https://kui-v1.vercel.app/",
+            tag: "UI Library",
         },
         {
             image: jrs,
