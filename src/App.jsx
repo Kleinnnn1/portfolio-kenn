@@ -65,6 +65,17 @@ function App() {
                 >
                   View Projects
                 </button>
+                <a
+                  href="/Web_Developer_Kenneth_Jhun_Balino.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 border border-sky-400 text-sky-400 rounded-lg hover:bg-sky-400/10 transition cursor-pointer text-center flex items-center gap-2 justify-center"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+                  </svg>
+                  View Resume
+                </a>
               </div>
             </div>
 
@@ -82,7 +93,7 @@ function App() {
         <ContactForm />
 
         <Footer />
-      </div>
+      </div >
     </>
   );
 }
