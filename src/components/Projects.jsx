@@ -33,7 +33,7 @@ export default function ProjectSection() {
             description:
                 "A modern website for a startup offering a smart POS system that helps small businesses manage sales, track inventory, and monitor reports easily.",
             link: "https://tinkerpro.io/ph",
-            tag: "Web App",
+            tag: "Point Of Sale",
         },
         {
             image: nike,
@@ -44,20 +44,20 @@ export default function ProjectSection() {
             tag: "UI/Animation"
         },
         {
-            image: kui,
-            title: "KUI",
-            description:
-                "A minimal dark component library built with React, TypeScript, and Tailwind. Designed for clean, copy-paste-ready UI components.",
-            link: "https://kui-v1.vercel.app/",
-            tag: "UI Library",
-        },
-        {
             image: jrs,
             title: "Job Request System",
             description:
                 "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system.",
             link: "http://ustpjrs.onrender.com/",
             tag: "Platform",
+        },
+                {
+            image: kui,
+            title: "KUI",
+            description:
+                "A minimal dark component library built with React, TypeScript, and Tailwind. Designed for clean, copy-paste-ready UI components.",
+            link: "https://kui-v1.vercel.app/",
+            tag: "UI Library",
         },
         {
             image: urlshortener,
