@@ -66,7 +66,7 @@ function App() {
                   View Projects
                 </button>
                 <a
-                  href="/Web_Developer_Kenneth_Jhun_Balino.pdf"
+                  href="/Full_Stack_Developer_Kenneth_Jhun_Balino.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 border border-sky-400 text-sky-400 rounded-lg hover:bg-sky-400/10 transition cursor-pointer text-center flex items-center gap-2 justify-center"
