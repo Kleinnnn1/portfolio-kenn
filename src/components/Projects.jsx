@@ -12,6 +12,7 @@ import linkguard from "../assets/projectsimg/linkguard.png";
 import songtify from "../assets/projectsimg/songtify.png";
 import nandasystem from "../assets/projectsimg/nandasystem.png";
 import kui from "../assets/projectsimg/kui.png";
+import performanceproperty from "../assets/projectsimg/performanceproperty.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -51,13 +52,21 @@ export default function ProjectSection() {
             link: "http://ustpjrs.onrender.com/",
             tag: "Platform",
         },
-                {
+        {
             image: kui,
             title: "KUI",
             description:
                 "A minimal dark component library built with React, TypeScript, and Tailwind. Designed for clean, copy-paste-ready UI components.",
             link: "https://kui-v1.vercel.app/",
             tag: "UI Library",
+        },
+        {
+            image: performanceproperty,
+            title: "Performance Property",
+            description:
+                "A full redesign and rebrand of a premium Australian property investment advisory firm refined visual identity, editorial layout, and conversion-focused architecture for high-income professionals.",
+            link: "https://performance-property.vercel.app/",
+            tag: "Rebrand / Advisory",
         },
         {
             image: urlshortener,
