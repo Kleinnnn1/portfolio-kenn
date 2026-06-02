@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import PixelGrid from "./ui/background";
 import SkillSection from "./components/Skills";
 import CertificateSection from "./components/Certificates";
+import CookieBanner from "./components/CookieBanner";
 
 function App() {
   const scrollToContact = () => {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+      <CookieBanner />
       <PixelGrid />
 
       <div style={{ position: "relative", zIndex: 1 }}>

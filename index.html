@@ -96,8 +96,21 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
-      gtag("config", "G-5S6KCMM1V3");
+
+      window.loadGA = function () {
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-5S6KCMM1V3";
+        document.head.appendChild(s);
+        s.onload = function () {
+          gtag("js", new Date());
+          gtag("config", "G-5S6KCMM1V3");
+        };
+      };
+
+      if (localStorage.getItem("ga_consent") === "granted") {
+        window.loadGA();
+      }
     </script>
   </head>
 
