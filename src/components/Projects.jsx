@@ -13,11 +13,13 @@ import songtify from "../assets/projectsimg/songtify.png";
 import nandasystem from "../assets/projectsimg/nandasystem.png";
 import kui from "../assets/projectsimg/kui.png";
 import performanceproperty from "../assets/projectsimg/performanceproperty.png";
+import slotmachine from "../assets/projectsimg/slotmachine.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
     const [animatingIndexes, setAnimatingIndexes] = useState([]);
     const [mountedIndexes, setMountedIndexes] = useState([]);
+    const [loadedImages, setLoadedImages] = useState({});
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -42,7 +44,7 @@ export default function ProjectSection() {
             description:
                 "An interactive shoe showcase with cinematic slide transitions, layered animations, and a shoe-through-text effect built with React and CSS.",
             link: "https://nike-web-teal.vercel.app/",
-            tag: "UI/Animation"
+            tag: "UI/Animation",
         },
         {
             image: jrs,
@@ -67,6 +69,14 @@ export default function ProjectSection() {
                 "A full redesign and rebrand of a premium Australian property investment advisory firm refined visual identity, editorial layout, and conversion-focused architecture for high-income professionals.",
             link: "https://performance-property.vercel.app/",
             tag: "Rebrand / Advisory",
+        },
+        {
+            image: slotmachine,
+            title: "Slot.GG",
+            description:
+                "An arcade-style slot machine game with real-time Firebase leaderboard, pixel art UI, synthesized sound effects, and 10-spin scoring system.",
+            link: "https://slot-machine-game-v1.vercel.app/",
+            tag: "Game",
         },
         {
             image: urlshortener,
@@ -194,21 +204,24 @@ export default function ProjectSection() {
             }}
         >
             <style>{`
-        @keyframes fadeSlideIn {
-          from { opacity: 0; transform: translateY(30px) scale(0.97); }
-          to   { opacity: 1; transform: translateY(0)   scale(1);    }
-        }
-        @keyframes fadeSlideOut {
-          from { opacity: 1; transform: translateY(0)   scale(1);    }
-          to   { opacity: 0; transform: translateY(30px) scale(0.97); }
-        }
-        .project-card:hover .project-arrow { opacity: 1; transform: translateX(0); }
-        .project-card:hover .project-img   { transform: scale(1.05); }
-        .project-card:hover {
-          border-color: rgba(100,120,160,0.45) !important;
-          box-shadow: 0 0 0 1px rgba(100,120,160,0.2), 0 20px 40px rgba(0,0,0,0.5) !important;
-        }
-      `}</style>
+                @keyframes fadeSlideIn {
+                    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+                    to   { opacity: 1; transform: translateY(0)   scale(1);    }
+                }
+                @keyframes fadeSlideOut {
+                    from { opacity: 1; transform: translateY(0)   scale(1);    }
+                    to   { opacity: 0; transform: translateY(30px) scale(0.97); }
+                }
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+                .project-card:hover .project-arrow { opacity: 1; transform: translateX(0); }
+                .project-card:hover .project-img   { transform: scale(1.05); }
+                .project-card:hover {
+                    border-color: rgba(100,120,160,0.45) !important;
+                    box-shadow: 0 0 0 1px rgba(100,120,160,0.2), 0 20px 40px rgba(0,0,0,0.5) !important;
+                }
+            `}</style>
 
             <div className="max-w-6xl mx-auto">
 
@@ -251,13 +264,34 @@ export default function ProjectSection() {
                             }}
                             className="project-card block"
                         >
-
                             <div className="relative overflow-hidden" style={{ height: "180px" }}>
+
+                                {/* Loading spinner */}
+                                {!loadedImages[index] && (
+                                    <div
+                                        className="absolute inset-0 flex items-center justify-center"
+                                        style={{ background: "rgba(10,10,10,0.6)" }}
+                                    >
+                                        <div style={{
+                                            width: "22px",
+                                            height: "22px",
+                                            border: "2px solid rgba(100,120,160,0.15)",
+                                            borderTop: "2px solid rgba(100,120,160,0.7)",
+                                            borderRadius: "50%",
+                                            animation: "spin 0.7s linear infinite",
+                                        }} />
+                                    </div>
+                                )}
+
                                 <img
                                     src={project.image}
                                     alt={project.title}
                                     className="project-img w-full h-full object-cover"
-                                    style={{ transition: "transform 0.5s ease" }}
+                                    style={{
+                                        transition: "transform 0.5s ease, opacity 0.3s ease",
+                                        opacity: loadedImages[index] ? 1 : 0,
+                                    }}
+                                    onLoad={() => setLoadedImages(prev => ({ ...prev, [index]: true }))}
                                 />
 
                                 <div
@@ -288,7 +322,6 @@ export default function ProjectSection() {
                                     <h3 className="text-white font-semibold text-lg leading-snug">
                                         {project.title}
                                     </h3>
-                                    {/* Arrow icon — appears on hover */}
                                     <span
                                         className="project-arrow text-gray-400 mt-1 shrink-0"
                                         style={{
@@ -338,6 +371,6 @@ export default function ProjectSection() {
                     </div>
                 )}
             </div>
-        </section>
+        </section >
     );
 }
