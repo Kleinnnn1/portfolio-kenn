@@ -72,7 +72,7 @@ export default function ProjectSection() {
         },
         {
             image: slotmachine,
-            title: "Slot.GG",
+            title: "Slot Machine Game",
             description:
                 "An arcade-style slot machine game with real-time Firebase leaderboard, pixel art UI, synthesized sound effects, and 10-spin scoring system.",
             link: "https://slot-machine-game-v1.vercel.app/",
