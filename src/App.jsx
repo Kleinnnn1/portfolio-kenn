@@ -9,6 +9,7 @@ import PixelGrid from "./ui/background";
 import SkillSection from "./components/Skills";
 import CertificateSection from "./components/Certificates";
 import CookieBanner from "./components/CookieBanner";
+import Github from "./components/Github";
 
 function App() {
   const scrollToContact = () => {
@@ -93,6 +94,8 @@ function App() {
         <CertificateSection />
 
         <ContactForm />
+
+        <Github />
 
         <Footer />
       </div >

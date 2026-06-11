@@ -6,9 +6,8 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const isClickScrolling = useRef(false);
 
-    const NAV_ITEMS = ["home", "skills", "projects", "experience", "certificates", "contact"];
+    const NAV_ITEMS = ["home", "skills", "projects", "experience", "certificates", "contact", "github"];
 
-    // Track scroll for floating pill visibility
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 80);
         window.addEventListener("scroll", handleScroll);
@@ -29,7 +28,7 @@ export default function Navbar() {
                     }
                 },
                 {
-                    rootMargin: "-30% 0px -60% 0px", // activates when section hits middle of viewport
+                    rootMargin: "-30% 0px -60% 0px",
                     threshold: 0,
                 }
             );
