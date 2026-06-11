@@ -93,7 +93,7 @@ function ContributionGraph() {
             {/* FIX: min-w-[600px] is a valid Tailwind arbitrary value; min-w-150 is not */}
             <div className="overflow-x-auto">
                 <img
-                    src={`https://ghchart.rshah.org/38bdf8/${GITHUB_USERNAME}`}
+                    src={`https://ghchart.rshah.org/40c463/${GITHUB_USERNAME}`}
                     alt="GitHub contribution chart"
                     className="w-full min-w-150 rounded opacity-90"
                     style={{ filter: "brightness(1.1) saturate(1.2)" }}
