@@ -7,13 +7,27 @@ export default function ExperienceSection() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setMountedIndexes([0, 1]);
+            setMountedIndexes([0, 1, 2]);
             setTimeout(() => setMountedIndexes([]), 800);
         }, 0);
         return () => clearTimeout(timer);
     }, []);
 
     const experiences = [
+        {
+            logo: null,
+            logoBg: "#1a1a2e",
+            role: "Freelance Full Stack Developer",
+            company: "Self-Employed",
+            period: "March 2024 – Present",
+            location: "Philippines",
+            tag: "Freelance",
+            description: [
+                "Designed and developed full stack web applications for various clients, handling both frontend and backend responsibilities from requirements gathering to deployment.",
+                "Built responsive user interfaces using modern frontend frameworks and implemented server-side logic, RESTful APIs, and database management.",
+                "Managed client relationships, project timelines, and deliverables independently, ensuring high-quality output tailored to each client's needs.",
+            ],
+        },
         {
             logo: tinkerpro,
             objectFit: "object-contain",
@@ -94,7 +108,6 @@ export default function ExperienceSection() {
 
                 {/* Timeline */}
                 <div className="relative">
-                    {/* Vibrant vertical line between dots */}
                     <div
                         className="absolute hidden sm:block"
                         style={{
@@ -107,7 +120,6 @@ export default function ExperienceSection() {
                             borderRadius: "2px",
                         }}
                     >
-                        {/* Shimmer traveling down */}
                         <div
                             style={{
                                 position: "absolute",
@@ -157,16 +169,22 @@ export default function ExperienceSection() {
                                         style={{ borderBottom: "1px solid rgba(100,120,160,0.12)" }}
                                     >
                                         <div className="flex items-center gap-4">
-                                            {/* Company logo */}
+                                            {/* Company logo or fallback icon */}
                                             <div
-                                                className="w-12 h-12 rounded shrink-0 overflow-hidden"
+                                                className="w-12 h-12 rounded shrink-0 overflow-hidden flex items-center justify-center"
                                                 style={{ background: exp.logoBg, border: "1px solid rgba(255,255,255,0.08)" }}
                                             >
-                                                <img
-                                                    src={exp.logo}
-                                                    alt={exp.company}
-                                                    className={`w-full h-full ${exp.objectFit}`}
-                                                />
+                                                {exp.logo ? (
+                                                    <img
+                                                        src={exp.logo}
+                                                        alt={exp.company}
+                                                        className={`w-full h-full ${exp.objectFit}`}
+                                                    />
+                                                ) : (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="rgba(160,180,220,0.7)" strokeWidth={1.5}>
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                                                    </svg>
+                                                )}
                                             </div>
 
                                             <div>
