@@ -108,7 +108,6 @@ function ContributionGraph() {
 
 function GitHubStatsCard() {
     return (
-        // FIX: overflow-hidden prevents embed image from bleeding out of card
         <div className="rounded-xl border border-white/10 bg-white/5 p-5 overflow-hidden">
             <div className="flex items-center gap-2 mb-4">
                 <FaGithub className="text-slate-300" />
@@ -185,11 +184,10 @@ export default function Github() {
     return (
         <section id="github" className="relative w-full py-20 px-4 md:px-8">
             <div className="max-w-6xl mx-auto">
-                <div className="mb-12 text-center">
+                <div className="flex items-center gap-4 mb-12">
+                    <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(100,120,160,0.3))" }} />
                     <h2 className="text-white text-2xl font-semibold tracking-widest uppercase">GITHUB ACTIVITY</h2>
-                    <p className="text-slate-400 mt-2 max-w-3xl text-sm leading-relaxed mx-auto">
-                        A live snapshot of my coding activity, stats, and recent repositories pulled straight from GitHub.
-                    </p>
+                    <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(100,120,160,0.3), transparent)" }} />
                 </div>
 
                 {loading ? (
