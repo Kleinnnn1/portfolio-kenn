@@ -14,6 +14,7 @@ import nandasystem from "../assets/projectsimg/nandasystem.png";
 import kui from "../assets/projectsimg/kui.png";
 import performanceproperty from "../assets/projectsimg/performanceproperty.png";
 import slotmachine from "../assets/projectsimg/slotmachine.png";
+import topichub from "../assets/projectsimg/topichub.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -53,6 +54,14 @@ export default function ProjectSection() {
                 "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system.",
             link: "http://ustpjrs.onrender.com/",
             tag: "Platform",
+        },
+        {
+            image: topichub,
+            title: "TopicHub",
+            description:
+                "A modern, responsive content management and blogging platform with seamless topic creation, editing, and publication built for a clean, intuitive editorial experience.",
+            link: "https://cms-blogv1.vercel.app/blog",
+            tag: "CMS / Platform",
         },
         {
             image: kui,
