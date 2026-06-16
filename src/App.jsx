@@ -51,8 +51,8 @@ function App() {
               </h2>
 
               <p className="mt-6 text-gray-300 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Building intuitive and efficient apps with React, Laravel, and modern technologies.
-                Passionate about clean code, seamless UX, and delivering real business impact.
+                Hi, I'm a Full Stack Developer with 3+ years of experience building modern, scalable
+                web applications using Laravel, React, Node.js, Django and other modern technologies.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -69,7 +69,7 @@ function App() {
                   View Projects
                 </button>
                 <a
-                  href="/Full_Stack_Developer_Kenneth_Jhun_Balino.pdf"
+                  href="/Full_Stack_Developer_Kenneth_Balino_June2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 border border-sky-400 text-sky-400 rounded-lg hover:bg-sky-400/10 transition cursor-pointer text-center flex items-center gap-2 justify-center"
