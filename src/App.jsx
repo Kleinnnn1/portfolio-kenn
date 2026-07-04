@@ -12,6 +12,8 @@ import CookieBanner from "./components/CookieBanner";
 import Github from "./components/Github";
 
 function App() {
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+
   const scrollToContact = () => {
     document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
   };
@@ -32,11 +34,35 @@ function App() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             <div className="flex justify-center lg:justify-start">
-              <div className="w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 border border-white rounded-full overflow-hidden shadow-xl">
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 border border-white rounded-full overflow-hidden shadow-xl">
+
+                {!imageLoaded && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: "rgba(10,10,10,0.6)" }}
+                  >
+                    <div
+                      style={{
+                        width: "28px",
+                        height: "28px",
+                        border: "2px solid rgba(255,255,255,0.15)",
+                        borderTop: "2px solid rgba(255,255,255,0.8)",
+                        borderRadius: "50%",
+                        animation: "spin 0.7s linear infinite",
+                      }}
+                    />
+                  </div>
+                )}
+
                 <img
                   src={KennImage}
                   alt="Kenneth Jhun Balino"
                   className="w-full h-full object-cover"
+                  style={{
+                    opacity: imageLoaded ? 1 : 0,
+                    transition: "opacity 0.4s ease",
+                  }}
+                  onLoad={() => setImageLoaded(true)}
                 />
               </div>
             </div>
@@ -51,7 +77,7 @@ function App() {
               </h2>
 
               <p className="mt-6 text-gray-300 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Hi, I'm a Full Stack Developer with 3+ years of experience building modern, scalable
+                Hi, I'm a Full Stack Developer with 3 years of experience building modern, scalable
                 web applications using Laravel, React, Node.js, Django and other modern technologies.
               </p>
 
