@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import tinkerpro from "../assets/tinkerpro logo.png";
 import brightway from "../assets/brightwaylogo.jpg";
+import ustp from "../assets/USTP.png";
 
 export default function ExperienceSection() {
     const [mountedIndexes, setMountedIndexes] = useState([]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setMountedIndexes([0, 1, 2]);
+            setMountedIndexes([0, 1, 2, 3]);
             setTimeout(() => setMountedIndexes([]), 800);
         }, 0);
         return () => clearTimeout(timer);
@@ -56,6 +57,20 @@ export default function ExperienceSection() {
                 "Configured and customized a WordPress template, applying CSS to create a visually appealing and functional company website.",
                 "Maintained the website with regular updates to ensure security and optimal performance.",
                 "Provided technical support for hardware, software, and basic networking issues, ensuring smooth daily operations and increased applicant engagement.",
+            ],
+        },
+        {
+            logo: ustp,
+            logoBg: "#2d3142",
+            role: "Intern Full Stack Developer",
+            company: "University of Science and Technology of Southern Philippines",
+            period: "January 2025 – March 2025",
+            location: "Cagayan De Oro City, Philippines",
+            tag: "Internship",
+            description: [
+                "Built the Job Request System (JRS), a scalable full stack platform using Django and React, currently supporting 100+ active users.",
+                "Implemented real-time updates and role-based access control to streamline request handling across departments.",
+                "Improved workflow efficiency by 40% and reduced request resolution time by 60% through an intuitive, well-structured interface.",
             ],
         },
     ];
