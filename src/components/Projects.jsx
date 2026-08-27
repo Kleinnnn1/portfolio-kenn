@@ -45,7 +45,7 @@ export default function ProjectSection() {
             title: "Revive & Align Pilates",
             description:
                 "A clean, welcoming website for a pilates studio, built to showcase class offerings, build trust with new clients, and make booking a session effortless.",
-            link: "",
+            link: "https://www.reviveandalignpilates.com/",
             tag: "Business Site",
         },
         {
