@@ -15,6 +15,7 @@ import kui from "../assets/projectsimg/kui.png";
 import performanceproperty from "../assets/projectsimg/performanceproperty.png";
 import slotmachine from "../assets/projectsimg/slotmachine.png";
 import topichub from "../assets/projectsimg/topichub.png";
+import reviveandpilates from "../assets/projectsimg/revive&pilates.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -40,12 +41,12 @@ export default function ProjectSection() {
             tag: "Point Of Sale",
         },
         {
-            image: nike,
-            title: "Nike Shoe Slider",
+            image: reviveandpilates,
+            title: "Revive & Align Pilates",
             description:
-                "An interactive shoe showcase with cinematic slide transitions, layered animations, and a shoe-through-text effect built with React and CSS.",
-            link: "https://nike-web-teal.vercel.app/",
-            tag: "UI/Animation",
+                "A clean, welcoming website for a pilates studio, built to showcase class offerings, build trust with new clients, and make booking a session effortless.",
+            link: "",
+            tag: "Business Site",
         },
         {
             image: jrs,
@@ -54,6 +55,14 @@ export default function ProjectSection() {
                 "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system.",
             link: "http://ustpjrs.onrender.com/",
             tag: "Platform",
+        },
+        {
+            image: nike,
+            title: "Nike Shoe Slider",
+            description:
+                "An interactive shoe showcase with cinematic slide transitions, layered animations, and a shoe-through-text effect built with React and CSS.",
+            link: "https://nike-web-teal.vercel.app/",
+            tag: "UI/Animation",
         },
         {
             image: topichub,
