@@ -16,6 +16,7 @@ import performanceproperty from "../assets/projectsimg/performanceproperty.png";
 import slotmachine from "../assets/projectsimg/slotmachine.png";
 import topichub from "../assets/projectsimg/topichub.png";
 import reviveandpilates from "../assets/projectsimg/revive&pilates.png";
+import denzportfolio from "../assets/projectsimg/denzportfolio.png";
 
 export default function ProjectSection() {
     const [showAll, setShowAll] = useState(false);
@@ -55,6 +56,14 @@ export default function ProjectSection() {
                 "A digital platform that streamlines campus maintenance by replacing paper-based processes with an easy-to-use online request and tracking system.",
             link: "http://ustpjrs.onrender.com/",
             tag: "Platform",
+        },
+        {
+            image: denzportfolio,
+            title: "Denz Portfolio",
+            description:
+                "Denzel's personal portfolio as a Full-Stack Developer, showcasing end-to-end web applications built with clean code and a focus on real-world impact.",
+            link: "",
+            tag: "Portfolio",
         },
         {
             image: nike,

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ga4cert from "../assets/certificateimg/GA4.png";
 import digitalMarketingCert from "../assets/certificateimg/SEO.png";
+import wadhwani from "../assets/certificateimg/wadhwani.png"
 
 const certificates = [
     {
@@ -22,6 +23,16 @@ const certificates = [
         credentialId: "392298775",
         verifyLink: "https://skillshop.exceedlms.com/student/award/2WYFp8JzWMEGw5eDSTJXmqp3",
         tag: "BASIC SEO & DIGITAL MARKETING",
+    },
+    {
+        image: wadhwani,
+        imagePlaceholder: "Wadhwani Certificate",
+        title: "Entrepreneurship and New Value Creation",
+        issuer: "Wadhwani Foundation",
+        date: "2026",
+        credentialId: "6783d788f1b8c0962e02894c",
+        verifyLink: "https://web.certificate.wfglobal.org/en/certificate?certificateId=6783d788f1b8c0962e02894c",
+        tag: "ENTREPRENEURSHIP & INNOVATION",
     },
 ];
 
