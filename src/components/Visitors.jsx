@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "@vnedyalk0v/react19-simple-maps";
 
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const geoUrl = "/countries-110m.json";
 
 // ISO alpha-2 -> [longitude, latitude], approximate country centers
 const COUNTRY_COORDS = {
