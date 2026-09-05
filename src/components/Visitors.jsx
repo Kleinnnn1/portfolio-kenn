@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "@vnedyalk0v/react19-simple-maps";
 
-const geoUrl = "/countries-110m.json";
+const geoUrl = "https://portfolio-kenn-nine.vercel.app/countries-110m.json";
 
 // ISO alpha-2 -> [longitude, latitude], approximate country centers
 const COUNTRY_COORDS = {
