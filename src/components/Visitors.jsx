@@ -36,6 +36,18 @@ export default function VisitorsSection() {
                 borderBottom: "1px solid rgba(100,120,160,0.12)",
             }}
         >
+            <style>{`
+                .marker-ping {
+                    transform-box: fill-box;
+                    transform-origin: center;
+                    animation: markerPing 2s ease-out infinite;
+                }
+                @keyframes markerPing {
+                    0%   { transform: scale(0.8); opacity: 0.6; }
+                    100% { transform: scale(3.2); opacity: 0; }
+                }
+            `}</style>
+
             <div className="max-w-5xl mx-auto text-center">
                 <div className="flex items-center gap-4 mb-10">
                     <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(100,120,160,0.3))" }} />
@@ -72,7 +84,9 @@ export default function VisitorsSection() {
                                     const r = Math.min(3 + Math.log(users + 1) * 1.5, 12);
                                     return (
                                         <Marker key={code} coordinates={coords}>
-                                            <circle r={r} fill="#38bdf8" fillOpacity={0.85} stroke="#0a0a0a" strokeWidth={1} />
+                                            <circle r={r} fill="#ffffff" fillOpacity={0.15} className="marker-ping" />
+                                            <circle r={r} fill="#ffffff" fillOpacity={0.25} className="marker-ping" style={{ animationDelay: "1s" }} />
+                                            <circle r={r} fill="#ffffff" fillOpacity={0.95} stroke="#0a0a0a" strokeWidth={1} />
                                         </Marker>
                                     );
                                 })}
