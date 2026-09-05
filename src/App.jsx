@@ -10,6 +10,7 @@ import SkillSection from "./components/Skills";
 import CertificateSection from "./components/Certificates";
 import CookieBanner from "./components/CookieBanner";
 import Github from "./components/Github";
+import VisitorsSection from "./components/Visitors";
 
 function App() {
   const [imageLoaded, setImageLoaded] = React.useState(false);
@@ -122,6 +123,8 @@ function App() {
         <ContactForm />
 
         <Github />
+
+        <VisitorsSection />
 
         <Footer />
       </div >
