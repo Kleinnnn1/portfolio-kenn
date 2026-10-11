@@ -15,9 +15,20 @@ const COUNTRY_COORDS = {
     CN: [104.2, 35.9], RU: [105.3, 61.5], PL: [19.1, 51.9], TR: [35.2, 39.0],
 };
 
+// Helper to convert ISO code to full country name (e.g., "US" -> "United States")
+const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
+const getCountryName = (code) => {
+    try {
+        return countryNames.of(code) || code;
+    } catch {
+        return code;
+    }
+};
+
 export default function VisitorsSection() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [tooltip, setTooltip] = useState(null); // { name, users, x, y }
 
     useEffect(() => {
         fetch("/api/visitors")
@@ -30,7 +41,7 @@ export default function VisitorsSection() {
     return (
         <section
             id="visitors"
-            className="py-16 px-6"
+            className="py-16 px-6 relative"
             style={{
                 borderTop: "1px solid rgba(100,120,160,0.12)",
                 borderBottom: "1px solid rgba(100,120,160,0.12)",
@@ -63,7 +74,18 @@ export default function VisitorsSection() {
                             Over <span className="text-white font-semibold">{data.totalUsers}+</span> visitors across{" "}
                             <span className="text-white font-semibold">{data.countryCount}</span> countries have checked out this portfolio.
                         </p>
-                        <div style={{ borderRadius: "6px", overflow: "hidden", border: "1px solid rgba(100,120,160,0.2)" }}>
+
+                        <div className="relative" style={{ borderRadius: "6px", overflow: "hidden", border: "1px solid rgba(100,120,160,0.2)" }}>
+                            {/* Floating Tooltip Box */}
+                            {tooltip && (
+                                <div
+                                    className="absolute z-50 pointer-events-none px-3 py-1.5 text-xs bg-gray-900 text-white rounded shadow-lg border border-gray-700 transform -translate-x-1/2 -translate-y-full mb-2"
+                                    style={{ left: tooltip.x, top: tooltip.y }}
+                                >
+                                    <span className="font-semibold">{tooltip.name}</span>: {tooltip.users} visitor{tooltip.users === 1 ? "" : "s"}
+                                </div>
+                            )}
+
                             <ComposableMap projectionConfig={{ scale: 140 }} style={{ width: "100%", height: "auto" }}>
                                 <Geographies geography={geoUrl}>
                                     {({ geographies }) =>
@@ -82,8 +104,39 @@ export default function VisitorsSection() {
                                     const coords = COUNTRY_COORDS[code];
                                     if (!coords) return null;
                                     const r = Math.min(3 + Math.log(users + 1) * 1.5, 12);
+                                    const countryName = getCountryName(code);
+
                                     return (
-                                        <Marker key={code} coordinates={coords}>
+                                        <Marker
+                                            key={code}
+                                            coordinates={coords}
+                                            style={{
+                                                default: { cursor: "pointer" },
+                                                hover: { cursor: "pointer" },
+                                                pressed: { cursor: "pointer" }
+                                            }}
+                                            onMouseEnter={(evt) => {
+                                                const box = evt.currentTarget.getBoundingClientRect();
+                                                const parentBox = evt.currentTarget.closest(".relative").getBoundingClientRect();
+                                                setTooltip({
+                                                    name: countryName,
+                                                    users,
+                                                    x: box.left - parentBox.left + box.width / 2,
+                                                    y: box.top - parentBox.top,
+                                                });
+                                            }}
+                                            onMouseLeave={() => setTooltip(null)}
+                                            onClick={(evt) => {
+                                                const box = evt.currentTarget.getBoundingClientRect();
+                                                const parentBox = evt.currentTarget.closest(".relative").getBoundingClientRect();
+                                                setTooltip({
+                                                    name: countryName,
+                                                    users,
+                                                    x: box.left - parentBox.left + box.width / 2,
+                                                    y: box.top - parentBox.top,
+                                                });
+                                            }}
+                                        >
                                             <circle r={r} fill="#ffffff" fillOpacity={0.15} className="marker-ping" />
                                             <circle r={r} fill="#ffffff" fillOpacity={0.25} className="marker-ping" style={{ animationDelay: "1s" }} />
                                             <circle r={r} fill="#ffffff" fillOpacity={0.95} stroke="#0a0a0a" strokeWidth={1} />
